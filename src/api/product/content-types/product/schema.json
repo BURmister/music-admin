@@ -1,0 +1,109 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "Products",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "uid",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "price": {
+      "type": "decimal",
+      "required": true
+    },
+    "previewImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "mappedBy": "products"
+    },
+    "album": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "yearIssue": {
+      "type": "string"
+    },
+    "yearPublication": {
+      "type": "string"
+    },
+    "style": {
+      "type": "string"
+    },
+    "vinylType": {
+      "type": "string"
+    },
+    "conditionEnvelope": {
+      "type": "string"
+    },
+    "conditionVinyl": {
+      "type": "string"
+    },
+    "vinylSize": {
+      "type": "string"
+    },
+    "barcode": {
+      "type": "string"
+    },
+    "specialText": {
+      "type": "string"
+    },
+    "detailText": {
+      "type": "text"
+    },
+    "trackList": {
+      "type": "blocks"
+    },
+    "new": {
+      "type": "boolean"
+    },
+    "rare": {
+      "type": "boolean"
+    },
+    "bestseller": {
+      "type": "boolean"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "products"
+    },
+    "detailImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
