@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "magazine_articles",
+  "info": {
+    "singularName": "magazine-article",
+    "pluralName": "magazine-articles",
+    "displayName": "MagazineArticles"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "previewText": {
+      "type": "text"
+    },
+    "previewImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "article": {
+      "type": "blocks"
+    },
+    "magazineSections": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::magazine-section.magazine-section",
+      "mappedBy": "magazineArticles"
+    }
+  }
+}

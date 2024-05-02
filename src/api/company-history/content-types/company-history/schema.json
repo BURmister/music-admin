@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "company_histories",
+  "info": {
+    "singularName": "company-history",
+    "pluralName": "company-histories",
+    "displayName": "CompanyHistory"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "specialStep": {
+      "type": "string",
+      "required": false
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

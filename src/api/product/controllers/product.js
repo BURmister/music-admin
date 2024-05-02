@@ -22,7 +22,7 @@ module.exports = createCoreController("api::product.product", ({ strapi }) => ({
     if (!query.filters) query.filters = {};
     query.filters.slug = { $eq: slug };
 
-    query.populate = ["previewImage"];
+    query.populate = ["previewImage", "author"];
 
     const entity = await strapi.service("api::product.product").find(query);
 

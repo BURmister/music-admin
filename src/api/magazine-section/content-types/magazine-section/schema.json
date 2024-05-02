@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "categories",
+  "collectionName": "magazine_sections",
   "info": {
-    "singularName": "category",
-    "pluralName": "categories",
-    "displayName": "Categories",
+    "singularName": "magazine-section",
+    "pluralName": "magazine-sections",
+    "displayName": "MagazineSection",
     "description": ""
   },
   "options": {
@@ -12,31 +12,27 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "slug": {
-      "type": "uid",
-      "required": true,
-      "targetField": "Name"
-    },
-    "Name": {
+    "name": {
       "type": "string",
       "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
     },
     "image": {
       "type": "media",
       "multiple": false,
       "required": false,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ]
     },
-    "products": {
+    "magazineArticles": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::product.product",
-      "inversedBy": "categories"
+      "target": "api::magazine-article.magazine-article",
+      "inversedBy": "magazineSections"
     }
   }
 }

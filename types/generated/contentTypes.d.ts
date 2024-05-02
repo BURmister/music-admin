@@ -794,6 +794,7 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
     singularName: 'author';
     pluralName: 'authors';
     displayName: 'Authors';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -807,6 +808,7 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
       'oneToMany',
       'api::product.product'
     >;
+    slug: Attribute.UID<'api::author.author', 'name'> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -836,7 +838,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    slug: Attribute.UID & Attribute.Required;
+    slug: Attribute.UID<'api::category.category', 'Name'> & Attribute.Required;
     Name: Attribute.String & Attribute.Required;
     image: Attribute.Media;
     products: Attribute.Relation<
@@ -861,6 +863,117 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
 }
 
+export interface ApiCompanyHistoryCompanyHistory extends Schema.CollectionType {
+  collectionName: 'company_histories';
+  info: {
+    singularName: 'company-history';
+    pluralName: 'company-histories';
+    displayName: 'CompanyHistory';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    slug: Attribute.UID<'api::company-history.company-history', 'title'> &
+      Attribute.Required;
+    specialStep: Attribute.String;
+    description: Attribute.Text & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::company-history.company-history',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::company-history.company-history',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMagazineArticleMagazineArticle
+  extends Schema.CollectionType {
+  collectionName: 'magazine_articles';
+  info: {
+    singularName: 'magazine-article';
+    pluralName: 'magazine-articles';
+    displayName: 'MagazineArticles';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    slug: Attribute.UID<'api::magazine-article.magazine-article', 'name'> &
+      Attribute.Required;
+    previewText: Attribute.Text;
+    previewImage: Attribute.Media;
+    article: Attribute.Blocks;
+    magazineSections: Attribute.Relation<
+      'api::magazine-article.magazine-article',
+      'manyToMany',
+      'api::magazine-section.magazine-section'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::magazine-article.magazine-article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::magazine-article.magazine-article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMagazineSectionMagazineSection
+  extends Schema.CollectionType {
+  collectionName: 'magazine_sections';
+  info: {
+    singularName: 'magazine-section';
+    pluralName: 'magazine-sections';
+    displayName: 'MagazineSection';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    slug: Attribute.UID<'api::magazine-section.magazine-section', 'name'>;
+    image: Attribute.Media;
+    magazineArticles: Attribute.Relation<
+      'api::magazine-section.magazine-section',
+      'manyToMany',
+      'api::magazine-article.magazine-article'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::magazine-section.magazine-section',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::magazine-section.magazine-section',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiProductProduct extends Schema.CollectionType {
   collectionName: 'products';
   info: {
@@ -873,7 +986,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    slug: Attribute.UID & Attribute.Required;
+    slug: Attribute.UID<'api::product.product', 'name'> & Attribute.Required;
     name: Attribute.String & Attribute.Required;
     price: Attribute.Decimal & Attribute.Required;
     previewImage: Attribute.Media;
@@ -942,6 +1055,9 @@ declare module '@strapi/types' {
       'plugin::i18n.locale': PluginI18NLocale;
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
+      'api::company-history.company-history': ApiCompanyHistoryCompanyHistory;
+      'api::magazine-article.magazine-article': ApiMagazineArticleMagazineArticle;
+      'api::magazine-section.magazine-section': ApiMagazineSectionMagazineSection;
       'api::product.product': ApiProductProduct;
     }
   }

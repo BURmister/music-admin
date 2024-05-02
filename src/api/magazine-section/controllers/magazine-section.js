@@ -1,13 +1,13 @@
 "use strict";
 
 /**
- * category controller
+ * magazine-section controller
  */
 
 const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController(
-  "api::category.category",
+  "api::magazine-section.magazine-section",
   ({ strapi }) => ({
     async find(ctx) {
       const { query } = ctx;
@@ -15,7 +15,9 @@ module.exports = createCoreController(
 
       console.log(query);
 
-      const entity = await strapi.service("api::category.category").find(query);
+      const entity = await strapi
+        .service("api::magazine-section.magazine-section")
+        .find(query);
 
       const { results } = await this.sanitizeOutput(entity, ctx);
       return results;
@@ -26,9 +28,15 @@ module.exports = createCoreController(
       if (!query.filters) query.filters = {};
       query.filters.slug = { $eq: slug };
 
-      query.populate = ["image", "products", "products.previewImage"];
+      query.populate = [
+        "image",
+        "magazineArticles",
+        "magazineArticles.previewImage",
+      ];
 
-      const entity = await strapi.service("api::category.category").find(query);
+      const entity = await strapi
+        .service("api::magazine-section.magazine-section")
+        .find(query);
 
       const { results } = await this.sanitizeOutput(entity, ctx);
       const response = this.transformResponse(results[0]);

@@ -14,7 +14,8 @@
   "attributes": {
     "slug": {
       "type": "uid",
-      "required": true
+      "required": true,
+      "targetField": "name"
     },
     "name": {
       "type": "string",
@@ -99,11 +100,12 @@
       "inversedBy": "products"
     },
     "detailImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     }
   }
 }
