@@ -39,6 +39,16 @@
       "type": "uid",
       "targetField": "name",
       "required": true
+    },
+    "detailText": {
+      "type": "text",
+      "required": false
+    },
+    "listenings": {
+      "type": "integer"
+    },
+    "place": {
+      "type": "integer"
     }
   }
 }

@@ -809,6 +809,9 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
       'api::product.product'
     >;
     slug: Attribute.UID<'api::author.author', 'name'> & Attribute.Required;
+    detailText: Attribute.Text;
+    listenings: Attribute.Integer;
+    place: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -838,8 +841,8 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    slug: Attribute.UID<'api::category.category', 'Name'> & Attribute.Required;
-    Name: Attribute.String & Attribute.Required;
+    slug: Attribute.UID<'api::category.category', 'name'> & Attribute.Required;
+    name: Attribute.String & Attribute.Required;
     image: Attribute.Media;
     products: Attribute.Relation<
       'api::category.category',

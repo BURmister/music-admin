@@ -15,9 +15,9 @@
     "slug": {
       "type": "uid",
       "required": true,
-      "targetField": "Name"
+      "targetField": "name"
     },
-    "Name": {
+    "name": {
       "type": "string",
       "required": true
     },

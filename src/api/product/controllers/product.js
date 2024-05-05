@@ -9,6 +9,7 @@ const { createCoreController } = require("@strapi/strapi").factories;
 module.exports = createCoreController("api::product.product", ({ strapi }) => ({
   async find(ctx) {
     const { query } = ctx;
+    console.log("query: ", query);
     query.populate = ["previewImage"];
 
     const entity = await strapi.service("api::product.product").find(query);
