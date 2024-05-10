@@ -48,7 +48,8 @@
       "type": "integer"
     },
     "place": {
-      "type": "integer"
+      "type": "integer",
+      "unique": true
     }
   }
 }

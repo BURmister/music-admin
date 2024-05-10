@@ -26,7 +26,6 @@ module.exports = createCoreController("api::product.product", ({ strapi }) => ({
     query.populate = ["previewImage", "author"];
 
     const entity = await strapi.service("api::product.product").find(query);
-
     const { results } = await this.sanitizeOutput(entity, ctx);
     const response = this.transformResponse(results[0]);
 

@@ -30,8 +30,8 @@ module.exports = createCoreController(
 
       query.populate = [
         "image",
-        "magazineArticles",
-        "magazineArticles.previewImage",
+        // "magazineArticles",
+        // "magazineArticles.previewImage",
       ];
 
       const entity = await strapi

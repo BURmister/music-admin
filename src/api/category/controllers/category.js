@@ -26,6 +26,7 @@ module.exports = createCoreController(
       if (!query.filters) query.filters = {};
       query.filters.slug = { $eq: slug };
 
+      // query.populate = ["image", "products", "products.previewImage"];
       query.populate = ["image", "products", "products.previewImage"];
 
       const entity = await strapi.service("api::category.category").find(query);

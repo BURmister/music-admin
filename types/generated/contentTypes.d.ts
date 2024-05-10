@@ -811,7 +811,7 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
     slug: Attribute.UID<'api::author.author', 'name'> & Attribute.Required;
     detailText: Attribute.Text;
     listenings: Attribute.Integer;
-    place: Attribute.Integer;
+    place: Attribute.Integer & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -992,7 +992,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
     slug: Attribute.UID<'api::product.product', 'name'> & Attribute.Required;
     name: Attribute.String & Attribute.Required;
     price: Attribute.Decimal & Attribute.Required;
-    previewImage: Attribute.Media;
+    previewImage: Attribute.Media & Attribute.Required;
     categories: Attribute.Relation<
       'api::product.product',
       'manyToMany',
@@ -1021,6 +1021,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'api::author.author'
     >;
     detailImage: Attribute.Media;
+    authorName: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
