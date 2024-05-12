@@ -29,8 +29,14 @@
 3. 404
 
 
+
+
+
+
+
 получить товары раздела
 http://localhost:1337/api/products/?filters[categories][slug]=rap
+
 
 получить статьи блока
 http://localhost:1337/api/magazine-articles/?filters[magazineSections][slug]=interviews
